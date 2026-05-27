@@ -1,1 +1,307 @@
-/* Add your CSS here */
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* BODY */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #e5e5e5;
+  color: #1f2937;
+
+  overflow: hidden;
+
+  height: 100vh;
+}
+
+/* HERO SECTION */
+header {
+  height: 32vh;
+
+  background: linear-gradient(
+    90deg,
+    #1488cc,
+    #0b5cab
+  );
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  padding: 1rem;
+}
+
+header div {
+  max-width: 700px;
+}
+
+/* INTEL LOGO */
+header img {
+  width: 100px;
+  margin-bottom: 0.5rem;
+}
+
+/* MAIN TITLE */
+header h1 {
+  font-size: 3.2rem;
+  font-weight: 800;
+
+  margin-bottom: 0.5rem;
+
+  color: white;
+
+  line-height: 1.1;
+}
+
+/* SUBTEXT */
+header p {
+  font-size: 1rem;
+  line-height: 1.5;
+
+  color: #eaf6ff;
+}
+
+/* TIMELINE SECTION */
+section {
+  display: flex;
+  gap: 1rem;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  height: 60vh;
+
+  padding: 1rem 1.5rem;
+
+  align-items: center;
+
+  scroll-behavior: smooth;
+
+  scroll-snap-type: x mandatory;
+
+  cursor: grab;
+}
+
+/* SCROLLBAR */
+section::-webkit-scrollbar {
+  height: 8px;
+}
+
+section::-webkit-scrollbar-track {
+  background: #d1d5db;
+}
+
+section::-webkit-scrollbar-thumb {
+  background: #0b5cab;
+  border-radius: 10px;
+}
+
+/* TIMELINE CARD */
+section div {
+
+  /* SHOW ONLY 4 CARDS AT A TIME */
+  flex: 0 0 calc((100% - 3rem) / 4);
+
+  max-width: calc((100% - 3rem) / 4);
+
+  height: 300px;
+
+  background: white;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  position: relative;
+
+  border: 1px solid #d1d5db;
+
+  scroll-snap-align: center;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* CARD HOVER */
+section div:hover {
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 10px 20px rgba(0,0,0,0.18),
+    0 0 10px rgba(11,92,171,0.2);
+}
+
+/* CARD IMAGE */
+section div img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  filter: brightness(0.8);
+
+  transition: transform 0.4s ease;
+}
+
+/* IMAGE ZOOM */
+section div:hover img {
+  transform: scale(1.05);
+}
+
+/* DARK OVERLAY */
+section div::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.75),
+    rgba(0,0,0,0.15)
+  );
+
+  z-index: 1;
+}
+
+/* YEAR */
+section div h2 {
+  position: absolute;
+
+  top: 15px;
+  left: 15px;
+
+  font-size: 1.8rem;
+  font-weight: 800;
+
+  color: white;
+
+  z-index: 2;
+
+  text-shadow: 0 2px 5px rgba(0,0,0,0.4);
+}
+
+/* TITLE */
+section div h3 {
+  position: absolute;
+
+  bottom: 30px;
+  left: 15px;
+
+  font-size: 1.1rem;
+  font-weight: 700;
+
+  color: white;
+
+  z-index: 2;
+
+  transition: transform 0.4s ease;
+}
+
+/* DESCRIPTION PANEL */
+section div p {
+  position: absolute;
+
+  bottom: -100%;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba(11, 92, 171, 0.96);
+
+  color: white;
+
+  padding: 65px 18px 18px;
+
+  line-height: 1.5;
+  font-size: 0.82rem;
+
+  z-index: 3;
+
+  transition: bottom 0.45s ease;
+
+  display: flex;
+  align-items: center;
+}
+
+/* REVEAL DESCRIPTION */
+section div:hover p {
+  bottom: 0;
+}
+
+/* MOVE TITLE */
+section div:hover h3 {
+  transform: translateY(-10px);
+}
+
+/* FOOTER NOTE */
+body > p {
+  text-align: center;
+
+  color: #444;
+
+  font-size: 0.75rem;
+
+  padding: 0.3rem 0 0.5rem;
+
+  margin: 0;
+}
+
+/* TABLET */
+@media (max-width: 1024px) {
+
+  section div {
+    flex: 0 0 calc((100% - 2rem) / 3);
+
+    max-width: calc((100% - 2rem) / 3);
+  }
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+
+  body {
+    overflow-y: auto;
+  }
+
+  header {
+    height: auto;
+    padding: 3rem 1rem;
+  }
+
+  header h1 {
+    font-size: 2.2rem;
+  }
+
+  header p {
+    font-size: 0.95rem;
+  }
+
+  section {
+    flex-direction: column;
+
+    overflow-x: visible;
+    overflow-y: visible;
+
+    height: auto;
+
+    padding: 1rem;
+  }
+
+  section div {
+    width: 100%;
+    max-width: 100%;
+
+    flex: none;
+  }
+
+  body > p {
+    display: none;
+  }
+}
