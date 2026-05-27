@@ -75,15 +75,25 @@ section {
 
   height: 60vh;
 
-  padding: 1rem 1.5rem;
+  padding: 1rem 3rem;
 
   align-items: center;
 
   scroll-behavior: smooth;
 
+  /* STRONGER SNAP EFFECT */
   scroll-snap-type: x mandatory;
 
+  /* BETTER SCROLLING */
+  -webkit-overflow-scrolling: touch;
+
   cursor: grab;
+
+  scrollbar-width: thin;
+}
+/* SHOW SCROLLBAR ON HOVER */
+section:hover {
+  overflow-x: auto;
 }
 
 /* SCROLLBAR */
@@ -243,6 +253,66 @@ section div:hover h3 {
   transform: translateY(-10px);
 }
 
+/* TIMELINE WRAPPER */
+.timeline-wrapper {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+}
+
+/* NAVIGATION BUTTONS */
+.nav-btn {
+  position: absolute;
+
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 50px;
+  height: 50px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(11, 92, 171, 0.9);
+
+  color: white;
+
+  font-size: 2rem;
+
+  cursor: pointer;
+
+  z-index: 10;
+
+  transition:
+    background 0.3s ease,
+    transform 0.2s ease;
+}
+
+/* HOVER EFFECT */
+.nav-btn:hover {
+  background: #0b5cab;
+
+  transform: translateY(-50%) scale(1.08);
+}
+
+/* LEFT BUTTON */
+.left-btn {
+  left: 10px;
+}
+
+/* RIGHT BUTTON */
+.right-btn {
+  right: 10px;
+}
+.nav-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 body > p {
   text-align: center;
 
@@ -262,14 +332,51 @@ body > p {
 /* TABLET */
 @media (max-width: 1024px) {
 
-  section div {
-    flex: 0 0 calc((100% - 2rem) / 3);
+  body {
+    overflow-y: auto;
+    height: auto;
+  }
 
-    max-width: calc((100% - 2rem) / 3);
+  .timeline-wrapper {
+    display: block;
+  }
+
+  /* HIDE ARROWS */
+  .nav-btn {
+    display: none !important;
+  }
+
+  section {
+    flex-direction: column;
+
+    overflow-x: visible;
+    overflow-y: visible;
+
+    height: auto;
+
+    min-height: auto;
+
+    padding: 1rem;
+
+    align-items: center;
+  }
+
+  section div {
+
+    width: 90%;
+    max-width: 500px;
+
+    flex: none;
+
+    margin: 0 auto;
+  }
+
+  body > p {
+    display: none;
   }
 }
 
-/* MOBILE RESPONSIVE */
+/* MOBILE */
 @media (max-width: 768px) {
 
   body {
@@ -293,6 +400,15 @@ body > p {
     font-size: 0.95rem;
   }
 
+  .timeline-wrapper {
+    display: block;
+  }
+
+  /* HIDE ARROWS ON MOBILE */
+  .nav-btn {
+    display: none !important;
+  }
+
   section {
     flex-direction: column;
 
@@ -302,13 +418,18 @@ body > p {
     height: auto;
 
     padding: 1rem;
+
+    align-items: center;
   }
 
   section div {
-    width: 100%;
-    max-width: 100%;
+
+    width: 90%;
+    max-width: 420px;
 
     flex: none;
+
+    margin: 0 auto;
   }
 
   body > p {

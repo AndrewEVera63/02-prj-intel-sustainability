@@ -27,6 +27,16 @@
     </div>
   </header>
 
+
+<!-- TIMELINE WRAPPER -->
+<div class="timeline-wrapper">
+
+  <!-- LEFT BUTTON -->
+  <button class="nav-btn left-btn">&#10094;</button>
+
+
+
+
   <!-- Timeline Cards Section -->
   <section>
 
@@ -137,10 +147,97 @@
         next-generation sustainable semiconductor manufacturing.
       </p>
     </div>
+
+    <!-- RIGHT BUTTON -->
+  <button class="nav-btn right-btn">&#10095;</button>
+
+</div>
   </section>
 
   <p>Scroll to view timeline | Hover over cards to learn more!</p>
+<script>
+  const timeline = document.querySelector("section");
 
+const leftBtn = document.querySelector(".left-btn");
+const rightBtn = document.querySelector(".right-btn");
+
+const card = document.querySelector("section div");
+
+/* START WITH LEFT BUTTON HIDDEN */
+leftBtn.style.display = "none";
+
+/* CALCULATE 4-CARD SCROLL */
+function getScrollAmount() {
+
+  const cardWidth = card.offsetWidth;
+
+  const gap = 16;
+
+  return (cardWidth + gap) * 4;
+}
+
+/* UPDATE BUTTON VISIBILITY */
+function updateButtons() {
+
+  const maxScrollLeft =
+    timeline.scrollWidth - timeline.clientWidth;
+
+  /* HIDE LEFT BUTTON AT START */
+  if (timeline.scrollLeft <= 10) {
+
+    leftBtn.style.display = "none";
+
+  } else {
+
+    leftBtn.style.display = "flex";
+  }
+
+  /* HIDE RIGHT BUTTON AT END */
+  if (timeline.scrollLeft >= maxScrollLeft - 10) {
+
+    rightBtn.style.display = "none";
+
+  } else {
+
+    rightBtn.style.display = "flex";
+  }
+}
+
+/* RIGHT BUTTON */
+rightBtn.addEventListener("click", () => {
+
+  timeline.scrollBy({
+    left: getScrollAmount(),
+    behavior: "smooth"
+  });
+
+});
+
+/* LEFT BUTTON */
+leftBtn.addEventListener("click", () => {
+
+  timeline.scrollBy({
+    left: -getScrollAmount(),
+    behavior: "smooth"
+  });
+
+});
+
+/* MOUSE WHEEL HORIZONTAL SCROLL */
+timeline.addEventListener("wheel", (e) => {
+
+  e.preventDefault();
+
+  timeline.scrollLeft += e.deltaY;
+
+});
+
+/* UPDATE BUTTONS WHEN SCROLLING */
+timeline.addEventListener("scroll", updateButtons);
+
+/* INITIAL CHECK */
+updateButtons();
+</script>
 
 
 
